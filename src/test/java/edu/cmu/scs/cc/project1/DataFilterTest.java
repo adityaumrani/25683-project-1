@@ -98,6 +98,17 @@ class DataFilterTest {
                 DataFilter.getColumns("en 1arnegie_Mellon_University 34 0")));
         assertTrue(DataFilter.checkFirstLetter(
                 DataFilter.getColumns("en %0045arnegie_Mellon_University 34 0")));
+        assertTrue(DataFilter.checkFirstLetter(
+                DataFilter.getColumns("en.m Ï‹ÎµÏƒÏ€Î±Î¼Ï‚ÏƒÎ½ 476832 0")));
+        assertTrue(DataFilter.checkFirstLetter(
+                DataFilter.getColumns("en.m Ñ‚Ñ†Ð¹Ð¶Ñ‡ 374015 0")));
+        assertTrue(DataFilter.checkFirstLetter(
+                DataFilter.getColumns("en Ï\u0081Î¶Ï…Ï‹ 361954 0")));
+    }
+
+    @Test
+    void test() {
+        System.out.println(Character.isLowerCase('Ï'));
     }
 
     @Test

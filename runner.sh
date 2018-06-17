@@ -100,7 +100,7 @@ filter() {
   # No standard output needed
   #
   # Note: the program must be encoding aware
-  zcat pageviews-20161109-000000.gz | java -cp project1.jar edu.cmu.scs.cc.project1.DataFilter
+  zcat pageviews-20161109-000000.gz | java -cp target/project1.jar edu.cmu.scs.cc.project1.DataFilter
 }
 
 ################################################################################
