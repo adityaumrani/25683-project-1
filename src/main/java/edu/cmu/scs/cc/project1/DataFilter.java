@@ -2,11 +2,8 @@ package edu.cmu.scs.cc.project1;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
 /**
  * <p>Implement data filter with test-driven development.</p>
@@ -139,14 +136,16 @@ public final class DataFilter {
      */
     public static void main(final String[] args) throws IOException {
         // modify and make the try-with-resources statement encoding aware
-        try (PrintWriter printWriter = new PrintWriter(new File("output"), "UTF-8");
-             BufferedReader br = new BufferedReader(
-                     new InputStreamReader(System.in, StandardCharsets.UTF_8))) {
+        try (PrintWriter printWriter = new PrintWriter(
+                new OutputStreamWriter(System.out, "UTF-8"), true);
+             Scanner in = new Scanner(
+                     new BufferedInputStream(System.in), "UTF-8")) {
             // do not change the code below
             TreeMap<String, Integer> pageviewMap = new TreeMap<>();
-            String page;
-            while ((page = br.readLine()) != null) {
-                String[] columns = getColumns(page);
+            String line;
+            while (in.hasNextLine()) {
+                line = in.nextLine();
+                String[] columns = getColumns(line);
                 if (checkAllRules(columns)) {
                     try {
                         pageviewMap.put(columns[TITLE],
