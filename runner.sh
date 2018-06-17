@@ -53,7 +53,7 @@ setup() {
   #
   # Standard output format:
   # No standard output needed
-  :
+  mvn clean package
 }
 
 cleanup() {
@@ -67,7 +67,7 @@ cleanup() {
   #
   # Standard output format:
   # No standard output needed
-  :
+  mvn clean
 }
 
 ################################################################################
@@ -100,7 +100,7 @@ filter() {
   # No standard output needed
   #
   # Note: the program must be encoding aware
-  :
+  zcat pageviews-20161109-000000.gz | java -cp project1.jar edu.cmu.scs.cc.project1.DataFilter
 }
 
 ################################################################################
