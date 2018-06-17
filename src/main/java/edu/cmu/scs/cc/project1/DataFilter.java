@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -146,9 +147,9 @@ public final class DataFilter {
     public static void main(final String[] args) throws IOException {
         // modify and make the try-with-resources statement encoding aware
         try (PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(
-                new FileOutputStream("output")), true);
+                new FileOutputStream("output"), StandardCharsets.UTF_8), true);
              BufferedReader br = new BufferedReader(
-                     new InputStreamReader(System.in))) {
+                     new InputStreamReader(System.in, StandardCharsets.UTF_8))) {
             // do not change the code below
             TreeMap<String, Integer> pageviewMap = new TreeMap<>();
             String page;
