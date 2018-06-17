@@ -1,13 +1,6 @@
 package edu.cmu.scs.cc.project1;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
@@ -146,8 +139,7 @@ public final class DataFilter {
      */
     public static void main(final String[] args) throws IOException {
         // modify and make the try-with-resources statement encoding aware
-        try (PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(
-                new FileOutputStream("output"), StandardCharsets.UTF_8), true);
+        try (PrintWriter printWriter = new PrintWriter(new File("output"), "UTF-8");
              BufferedReader br = new BufferedReader(
                      new InputStreamReader(System.in, StandardCharsets.UTF_8))) {
             // do not change the code below
