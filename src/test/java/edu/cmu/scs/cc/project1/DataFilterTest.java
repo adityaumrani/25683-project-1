@@ -107,11 +107,6 @@ class DataFilterTest {
     }
 
     @Test
-    void test() {
-        System.out.println(Character.isLowerCase('Ï'));
-    }
-
-    @Test
     void checkAllRules() {
         assertTrue(DataFilter.checkAllRules(
                 DataFilter.getColumns("en Carnegie_Mellon_University 34 0")));
