@@ -299,6 +299,6 @@ public final class DataFilter {
     static boolean checkFirstLetter(final String[] columns) {
         final String title = columns[TITLE];
         Character c = title.charAt(0);
-        return !Character.isAlphabetic(c) || !Character.isLowerCase(c);
+        return c < 'a' || c > 'z';
     }
 }
