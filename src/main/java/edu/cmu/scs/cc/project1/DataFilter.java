@@ -136,8 +136,7 @@ public final class DataFilter {
      */
     public static void main(final String[] args) throws IOException {
         // modify and make the try-with-resources statement encoding aware
-        try (PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(
-                new FileOutputStream("output"), "UTF-8"), true);
+        try (PrintWriter printWriter = new PrintWriter(new File("output"), "UTF-8");
              Scanner in = new Scanner(
                      new BufferedInputStream(System.in), "UTF-8")) {
             // do not change the code below
@@ -160,6 +159,7 @@ public final class DataFilter {
             for (Entry<String, Integer> entry : linkedList) {
                 printWriter.print(entry.getKey() + "\t" + entry.getValue() + "\n");
             }
+            printWriter.flush();
         }
     }
 
