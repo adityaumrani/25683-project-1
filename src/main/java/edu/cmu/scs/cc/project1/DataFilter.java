@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Map.Entry;
@@ -239,7 +240,7 @@ public final class DataFilter {
      * @return true if length == 4
      */
     static boolean checkDataLength(final String[] columns) {
-        throw new RuntimeException("To be implemented");
+        return columns != null && columns.length == CLEAN_DATA_LENGTH;
     }
 
     /**
@@ -249,7 +250,8 @@ public final class DataFilter {
      * @return true if the domain code is en or en.m
      */
     static boolean checkDomain(final String[] columns) {
-        throw new RuntimeException("To be implemented");
+        final String domain = columns[DOMAIN];
+        return domain.contentEquals("en.m") || domain.contentEquals("en");
     }
 
     /**
@@ -259,7 +261,9 @@ public final class DataFilter {
      * @return false if it is a special page
      */
     static boolean checkSpecialPage(final String[] columns) {
-        throw new RuntimeException("To be implemented");
+        final String title = columns[TITLE];
+        return Arrays.stream(SPECIAL_PAGES)
+                .noneMatch(s -> s.equals(title));
     }
 
     /**
@@ -271,7 +275,9 @@ public final class DataFilter {
      * @return false if the title starts with any blacklisted prefix
      */
     static boolean checkPrefix(final String[] columns) {
-        throw new RuntimeException("To be implemented");
+        final String title = columns[TITLE];
+        return Arrays.stream(PREFIX_BLACKLIST)
+                .noneMatch(blacklist -> title.toLowerCase().startsWith(blacklist.toLowerCase()));
     }
 
     /**
@@ -281,7 +287,9 @@ public final class DataFilter {
      * @return false if the title ends with any blacklisted suffix
      */
     static boolean checkSuffix(final String[] columns) {
-        throw new RuntimeException("To be implemented");
+        final String title = columns[TITLE];
+        return Arrays.stream(SUFFIX_BLACKLIST)
+                .noneMatch(blacklist -> title.toLowerCase().endsWith(blacklist.toLowerCase()));
     }
 
     /**
@@ -297,6 +305,8 @@ public final class DataFilter {
      * @return false if the title starts with [a-z]
      */
     static boolean checkFirstLetter(final String[] columns) {
-        throw new RuntimeException("To be implemented");
+        final String title = columns[TITLE];
+        Character c = title.charAt(0);
+        return !Character.isAlphabetic(c) || !Character.isLowerCase(c);
     }
 }

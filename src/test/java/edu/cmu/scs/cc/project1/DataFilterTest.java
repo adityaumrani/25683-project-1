@@ -45,6 +45,8 @@ class DataFilterTest {
         assertTrue(DataFilter.checkDomain(
                 DataFilter.getColumns("en.m Carnegie_Mellon_University 34 0")));
         assertFalse(DataFilter.checkDomain(
+                DataFilter.getColumns("en.M Carnegie_Mellon_University 34 0")));
+        assertFalse(DataFilter.checkDomain(
                 DataFilter.getColumns("fr Carnegie_Mellon_University 34 0")));
     }
 
@@ -67,6 +69,8 @@ class DataFilterTest {
         assertFalse(DataFilter.checkPrefix(
                 DataFilter.getColumns("en User:K6ka 34 0")));
         assertFalse(DataFilter.checkPrefix(
+                DataFilter.getColumns("en USer:K6ka 34 0")));
+        assertFalse(DataFilter.checkPrefix(
                 DataFilter.getColumns("en User%3AK6ka 34 0")));
         assertFalse(DataFilter.checkPrefix(
                 DataFilter.getColumns("en User%3aK6ka 34 0")));
@@ -74,16 +78,33 @@ class DataFilterTest {
 
     @Test
     void checkSuffix() {
-        throw new RuntimeException("add test cases on your own");
+        assertTrue(DataFilter.checkSuffix(
+                DataFilter.getColumns("en Carnegie_Mellon_University 34 0")));
+        assertFalse(DataFilter.checkSuffix(
+                DataFilter.getColumns("en Carnegie_Mellon_University.png 34 0")));
+        assertFalse(DataFilter.checkSuffix(
+                DataFilter.getColumns("en Carnegie_Mellon_University.PNG 34 0")));
+        assertFalse(DataFilter.checkSuffix(
+                DataFilter.getColumns("en Carnegie_Mellon_University.tXt 34 0")));
     }
 
     @Test
     void checkFirstLetter() {
-        throw new RuntimeException("add test cases on your own");
+        assertFalse(DataFilter.checkFirstLetter(
+                DataFilter.getColumns("en carnegie_Mellon_University 34 0")));
+        assertTrue(DataFilter.checkFirstLetter(
+                DataFilter.getColumns("en Carnegie_Mellon_University 34 0")));
+        assertTrue(DataFilter.checkFirstLetter(
+                DataFilter.getColumns("en 1arnegie_Mellon_University 34 0")));
+        assertTrue(DataFilter.checkFirstLetter(
+                DataFilter.getColumns("en %0045arnegie_Mellon_University 34 0")));
     }
 
     @Test
     void checkAllRules() {
-        throw new RuntimeException("add test cases on your own");
+        assertTrue(DataFilter.checkAllRules(
+                DataFilter.getColumns("en Carnegie_Mellon_University 34 0")));
+        assertFalse(DataFilter.checkAllRules(
+                DataFilter.getColumns("en carnegie 34 0")));
     }
 }
